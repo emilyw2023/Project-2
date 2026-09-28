@@ -1,0 +1,218 @@
+[
+  {
+    "Hiking Trails": "Raven Clif Falls",
+    "Location": "Helen, GA",
+    "Length": "5.1mi",
+    "Elevation Gain": "656ft",
+    "Difficulty": "moderate",
+    "Favorites": 1,
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Cloudland Canyon",
+    "Location": "GA",
+    "Length": "4.9mi",
+    "Elevation Gain": "1,100ft",
+    "Difficulty": "moderate",
+    "Favorites": "",
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Tallulah Gorge High Bluff",
+    "Location": "Tallulah Falls, GA",
+    "Length": "5.2mi",
+    "Elevation Gain": "951ft",
+    "Difficulty": "moderate",
+    "Favorites": 1,
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Amicalola falls ",
+    "Location": "Dawsonville, GA",
+    "Length": "2.4mi",
+    "Elevation Gain": "810ft",
+    "Difficulty": "moderate",
+    "Favorites": "",
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Providence Canyon",
+    "Location": "Columbus, GA",
+    "Length": "6.7mi",
+    "Elevation Gain": "600ft",
+    "Difficulty": "moderate",
+    "Favorites": 1,
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Old Rag Mountain ",
+    "Location": "Shenandoah National Park, VA ",
+    "Length": "7.2mi ",
+    "Elevation Gain": "2,349ft",
+    "Difficulty": "Hard",
+    "Favorites": 1,
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Anna Ruby Falls",
+    "Location": "Sautee Nachooche, GA",
+    "Length": ".90m",
+    "Elevation Gain": "219ft",
+    "Difficulty": "easy",
+    "Favorites": "",
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Duke Creek",
+    "Location": "Helen, GA",
+    "Length": "2.4mi",
+    "Elevation Gain": "341ft",
+    "Difficulty": "easy",
+    "Favorites": "",
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "High Shoals",
+    "Location": "Helen, GA",
+    "Length": "2.5mi",
+    "Elevation Gain": "534ft",
+    "Difficulty": "moderate",
+    "Favorites": "",
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Blue Hole",
+    "Location": "Helen, GA",
+    "Length": "2.6mi ",
+    "Elevation Gain": "600ft",
+    "Difficulty": "moderate",
+    "Favorites": "",
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Horse Trough Falls",
+    "Location": "Blairsville, GA",
+    "Length": "1mi",
+    "Elevation Gain": "59ft",
+    "Difficulty": "Easy",
+    "Favorites": "",
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Beehive Basin Trailhead",
+    "Location": "Galletin Gateway,MT",
+    "Length": "7mi",
+    "Elevation Gain": "1,660ft",
+    "Difficulty": "moderate",
+    "Favorites": "",
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Edge of the World",
+    "Location": "Dawsonville, GA",
+    "Length": "2.5mi",
+    "Elevation Gain": "380ft",
+    "Difficulty": "easy",
+    "Favorites": 1,
+    "extra": "Required Pass"
+  },
+  {
+    "Hiking Trails": "First Yellow Mule Trail",
+    "Location": "Big Sky, MT",
+    "Length": "4mi",
+    "Elevation Gain": "575ft",
+    "Difficulty": "moderate",
+    "Favorites": "",
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Grand Canyon of the Yellowstone",
+    "Location": "Yellowstone, WY",
+    "Length": 4.2,
+    "Elevation Gain": "469ft",
+    "Difficulty": "Easy",
+    "Favorites": 1,
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Monmouth Terrace trails",
+    "Location": "Yellowstone, WY",
+    "Length": "2.2mi",
+    "Elevation Gain": "321ft",
+    "Difficulty": "easy",
+    "Favorites": "",
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Quinault Loop",
+    "Location": "Olympic National Park, WA",
+    "Length": "4.1mi",
+    "Elevation Gain": "364fr",
+    "Difficulty": "easy",
+    "Favorites": "",
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Stripped Peak Loop",
+    "Location": "Salt Creek, WA",
+    "Length": "6.4mi",
+    "Elevation Gain": "1,545ft",
+    "Difficulty": "moderate",
+    "Favorites": "",
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Hurricane Hill",
+    "Location": "Olympic national Park, WA",
+    "Length": "3.5mi",
+    "Elevation Gain": "803ft",
+    "Difficulty": "moderate",
+    "Favorites": "",
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Sol Duc Falls",
+    "Location": "Olympic national Park, WA",
+    "Length": "1.8mi",
+    "Elevation Gain": "262ft",
+    "Difficulty": "easy",
+    "Favorites": "",
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Hall Of Mosses",
+    "Location": "Olympic national Park, WA",
+    "Length": "1.1mi",
+    "Elevation Gain": "82ft",
+    "Difficulty": "easy",
+    "Favorites": "",
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Swanee Mountain",
+    "Location": "Cumming, GA",
+    "Length": "3.6mi",
+    "Elevation Gain": "508ft",
+    "Difficulty": "modeerate",
+    "Favorites": "",
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Blood Mountain",
+    "Location": "Cleveland, GA",
+    "Length": "4.7mi",
+    "Elevation Gain": "1,364ft",
+    "Difficulty": "moderate",
+    "Favorites": "",
+    "extra": ""
+  },
+  {
+    "Hiking Trails": "Tallulah Gorge Sliding Rock",
+    "Location": "Tallulah Falls, GA",
+    "Length": "3.4mi",
+    "Elevation Gain": "1,000ft",
+    "Difficulty": "Hard",
+    "Favorites": "",
+    "extra": "Needs a Permit"
+  }
+]

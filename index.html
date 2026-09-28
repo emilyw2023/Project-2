@@ -3,9 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="theme-color" content="#f6f7f2">
+    <meta name="description" content="Find your next favorite hike. Explore trails by location, distance, and difficulty.">
+    <title>Trailhead — Find your next hike</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="style.js" defer></script>
 </head>
 <body>
-    
+    <header class="site-header">
+        <a class="brand" href="#top" aria-label="Trailhead home">
+            <span class="brand-mark" aria-hidden="true">↗</span>
+            <span>trailhead<span class="brand-period">.</span></span>
+        </a>
+        <nav class="header-nav" aria-label="Main navigation">
+            <a href="#explore">Explore trails</a>
+            <a href="#about">About</a>
+        </nav>
+        <a class="header-cta" href="#explore">Find a trail <span aria-hidden="true">↓</span></a>
+    </header>
+
+    <main id="top">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-content">
+                <p class="eyebrow"><span class="eyebrow-dot"></span> YOUR NEXT GREAT OUTDOORS DAY</p>
+                <h1 id="hero-title">A little further.<br><em>A lot more alive.</em></h1>
+                <p class="hero-copy">Fresh air is calling. Find a trail that fits your pace, wherever you want to wander.</p>
+                <a class="hero-button" href="#explore">Explore the trails <span aria-hidden="true">↓</span></a>
+            </div>
+            <div class="hero-note"><span class="note-line"></span><span>GOOD DAYS START<br>OUT THERE</span></div>
+            <div class="hero-art" aria-hidden="true">
+                <div class="sun"></div><div class="mountain mountain-back"></div><div class="mountain mountain-mid"></div><div class="mountain mountain-front"></div>
+                <div class="hero-art-label">TAKE THE<br>SCENIC ROUTE</div>
+            </div>
+            <div class="hero-index" aria-hidden="true">01 <span></span> 24</div>
+        </section>
+
+        <section class="explore-section" id="explore" aria-labelledby="explore-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow section-eyebrow">THE GREAT OUT THERE</p>
+                    <h2 id="explore-title">Find your trail<span class="brand-period">.</span></h2>
+                </div>
+                <p class="section-intro">From quick escapes to all-day adventures,<br>there's a path with your name on it.</p>
+            </div>
+
+            <div class="toolbar" aria-label="Trail filters">
+                <label class="search-box">
+                    <span class="search-icon" aria-hidden="true">⌕</span>
+                    <span class="visually-hidden">Search trails or locations</span>
+                    <input id="search-input" type="search" placeholder="Search trails or places..." autocomplete="off">
+                    <kbd>/</kbd>
+                </label>
+                <label class="filter-control">
+                    <span class="visually-hidden">Filter by difficulty</span>
+                    <select id="difficulty-filter">
+                        <option value="all">All difficulty</option>
+                        <option value="easy">Easy</option>
+                        <option value="moderate">Moderate</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </label>
+                <label class="filter-control location-control">
+                    <span class="visually-hidden">Filter by state or region</span>
+                    <select id="location-filter"><option value="all">All locations</option></select>
+                </label>
+                <label class="filter-control sort-control">
+                    <span class="visually-hidden">Sort trails</span>
+                    <select id="sort-select">
+                        <option value="recommended">Recommended</option>
+                        <option value="shortest">Shortest distance</option>
+                        <option value="longest">Longest distance</option>
+                        <option value="easiest">Lowest elevation</option>
+                    </select>
+                </label>
+                <button class="favorites-toggle" id="favorites-toggle" type="button" aria-pressed="false"><span aria-hidden="true">♡</span> Favorites</button>
+            </div>
+
+            <div class="results-meta"><p id="results-count" aria-live="polite">Loading trails...</p><span class="results-rule"></span><span class="results-caption">MADE FOR THE MOMENT</span></div>
+            <div class="trail-grid" id="trail-grid" aria-live="polite"></div>
+            <div class="empty-state" id="empty-state" hidden>
+                <span class="empty-icon" aria-hidden="true">⌁</span>
+                <h3>No trails found</h3>
+                <p>Try adjusting your search or filters to find another path.</p>
+                <button id="clear-filters" type="button">Clear all filters</button>
+            </div>
+            <p class="load-error" id="load-error" hidden>We couldn't load the trail list. Please check that Data.json is beside this page and try again.</p>
+        </section>
+
+        <section class="closing-banner" id="about">
+            <span class="closing-kicker">A FRIENDLY REMINDER</span>
+            <p>Leave it better than<br><em>you found it.</em></p>
+            <span class="closing-mark" aria-hidden="true">↗</span>
+        </section>
+    </main>
+
+    <footer class="site-footer"><a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true">↗</span><span>trailhead<span class="brand-period">.</span></span></a><span>Take only memories. Leave only footprints.</span><a href="#top">Back to top ↑</a></footer>
 </body>
 </html>
