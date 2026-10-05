@@ -152,9 +152,9 @@ function saveFavorites() {
 async function loadTrails() {
 	try {
 		const response = await fetch('./Data.json');
-		if (!response.ok) throw new Error(`Trail data request failed: ${response.status}`);
+		if (!response.ok) throw new Error();
 		const data = await response.json();
-		if (!Array.isArray(data)) throw new Error('Trail data should be a JSON array.');
+		if (!Array.isArray(data)) throw new Error();
 
 		trails = data.map((item) => {
 			const trail = {
@@ -192,8 +192,7 @@ async function loadTrails() {
 		const regions = [...new Set(trails.map((trail) => locationRegion(trail.location)))].sort(compareRegions);
 		locationFilter.insertAdjacentHTML('beforeend', regions.map((region) => `<option value="${escapeHTML(region)}">${escapeHTML(region)}</option>`).join(''));
 		renderTrails();
-	} catch (error) {
-		console.error('Unable to load hiking trails:', error);
+	} catch {
 		resultsCount.textContent = 'Trail list unavailable';
 		loadError.hidden = false;
 	}
