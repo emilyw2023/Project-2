@@ -80,9 +80,7 @@ function renderTrail(trail) {
 	const note = trail.note ? `<p class="trail-note">✦ &nbsp;${escapeHTML(trail.note)}</p>` : '';
 	return `<article class="trail-card" data-trail-key="${escapeHTML(trail.key)}" tabindex="0" aria-haspopup="dialog" aria-label="View details for ${escapeHTML(trail.name)}">
 		<div class="card-art" aria-hidden="true">
-			<span class="art-sun"></span>
 			<span class="difficulty-pill ${trail.difficulty}">${escapeHTML(trail.difficulty)}</span>
-			<span class="art-label">FIND YOUR OWN PACE</span>
 		</div>
 		<button class="favorite-button ${favorite ? 'is-favorite' : ''}" type="button" data-favorite="${escapeHTML(trail.key)}" aria-label="${favorite ? 'Remove' : 'Add'} ${escapeHTML(trail.name)} ${favorite ? 'from' : 'to'} favorites" aria-pressed="${favorite}">${favorite ? '♥' : '♡'}</button>
 		<div class="card-body">
