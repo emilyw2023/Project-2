@@ -133,7 +133,6 @@ kbd { padding: 3px 6px; color: #8b948d; background: #f3f4f0; border: 1px solid #
 	padding: 0 6%;
 	border-bottom: 1px solid var(--line);
 }
-.brand { font-family: inherit; font-size: 19px; letter-spacing: -.5px; }
 .header-nav { margin: 0; font-size: 14px; }
 .header-cta { padding: 10px 14px; border-radius: 5px; font-size: 13px; }
 .header-cta span { display: none; }
@@ -186,7 +185,6 @@ kbd { padding: 3px 6px; color: #8b948d; background: #f3f4f0; border: 1px solid #
 .trail-stat span { color: #68736b; font-size: 10px; }
 .trail-note { font-size: 12px; }
 .site-footer { min-height: 64px; padding: 0 6%; border-top: 1px solid var(--line); font-size: 13px; }
-.footer-brand { font-size: 16px; }
 
 @media (max-width: 720px) {
 	.site-header { padding-left: 5%; padding-right: 5%; }
@@ -259,7 +257,6 @@ kbd { padding: 3px 6px; color: #8b948d; background: #f3f4f0; border: 1px solid #
 	.closing-banner { min-height: 195px; }
 	.closing-mark { right: 7%; bottom: 18px; }
 	.site-footer { padding-left: 20px; padding-right: 20px; }
-	.footer-brand { font-size: 15px; }
 }
 
 @media (max-width: 720px) {
