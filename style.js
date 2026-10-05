@@ -77,7 +77,7 @@ function renderTrail(trail) {
 		[formatDistance(trail.length), 'DISTANCE'],
 		[trail.elevation ? `${Math.round(trail.elevation).toLocaleString()} ft` : '—', 'ELEVATION GAIN']
 	].map(([value, label]) => `<div class="trail-stat"><strong>${escapeHTML(value)}</strong><span>${label}</span></div>`).join('');
-	const note = trail.note ? `<p class="trail-note">✦ &nbsp;${escapeHTML(trail.note)}</p>` : '';
+	const note = trail.note ? `<p class="trail-note">${escapeHTML(trail.note)}</p>` : '';
 	return `<article class="trail-card" data-trail-key="${escapeHTML(trail.key)}" tabindex="0" aria-haspopup="dialog" aria-label="View details for ${escapeHTML(trail.name)}">
 		<div class="card-art" aria-hidden="true">
 			<span class="difficulty-pill ${trail.difficulty}">${escapeHTML(trail.difficulty)}</span>
