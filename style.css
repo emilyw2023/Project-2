@@ -70,11 +70,16 @@ button, select { cursor: pointer; }
 .trail-card:focus-visible { outline: 3px solid #97a978; outline-offset: 3px; }
 .card-art { height: 116px; position: relative; overflow: hidden; background: #416c50; }
 .difficulty-pill { position: absolute; top: 12px; left: 12px; z-index: 1; padding: 6px 9px; color: #425643; background: #fff; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: capitalize; }
-.difficulty-pill.hard { color: #874e3b; }
+.difficulty-pill.easy { color: #246b3b; }
+.difficulty-pill.moderate { color: #805900; }
+.difficulty-pill.hard,
+.dialog-difficulty.hard { color: #b42318; }
+.dialog-difficulty.easy { color: #246b3b; }
+.dialog-difficulty.moderate { color: #805900; }
 
 
 
-/* Heart button on each trail card */
+/* Heart button on trail card */
 
 .favorite-button { position: absolute; top: 10px; right: 10px; z-index: 1; width: 34px; height: 34px; display: grid; place-items: center; color: #314b3c; background: #fff; border: 1px solid var(--line); border-radius: 50%; font-size: 18px; transition: color .18s; }
 .favorite-button:hover { color: #c65d48; }
@@ -93,7 +98,7 @@ button, select { cursor: pointer; }
 .trail-note { margin: 11px 0 0; color: #795b35; font-size: 12px; }
 
 /* Trail details popup */
-.trail-dialog {
+#trailpopup {
 	position: relative;
 	width: min(520px, calc(100% - 32px));
 	max-height: calc(100% - 32px);
@@ -105,7 +110,7 @@ button, select { cursor: pointer; }
 	background: #fff;
 	box-shadow: 0 20px 60px #14271e55;
 }
-.trail-dialog::backdrop { background: #14271e99; backdrop-filter: blur(3px); }
+#trailpopup::backdrop { background: #14271e99; backdrop-filter: blur(3px); }
 .dialog-art { height: 116px; border-radius: 10px 10px 0 0; }
 .dialog-close {
 	position: absolute;

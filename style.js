@@ -84,7 +84,7 @@ function renderTrail(trail) {
 		</div>
 		<button class="favorite-button ${favorite ? 'is-favorite' : ''}" type="button" data-favorite="${escapeHTML(trail.key)}" aria-label="${favorite ? 'Remove' : 'Add'} ${escapeHTML(trail.name)} ${favorite ? 'from' : 'to'} favorites" aria-pressed="${favorite}">${favorite ? '♥' : '♡'}</button>
 		<div class="card-body">
-			<p class="card-location">⌖ &nbsp;${escapeHTML(trail.location)}</p>
+			<p class="card-location">${escapeHTML(trail.location)}</p>
 			<h3 class="card-title" title="${escapeHTML(trail.name)}">${escapeHTML(trail.name)}</h3>
 			<div class="trail-stats">${details}</div>
 			${note}
@@ -100,6 +100,9 @@ function showTrailDetails(key) {
 	dialogTitle.textContent = trail.name;
 	dialogLocation.textContent = trail.location;
 	dialogDifficulty.textContent = `${trail.difficulty} difficulty`;
+	dialogDifficulty.classList.toggle('easy', trail.difficulty === 'easy');
+	dialogDifficulty.classList.toggle('moderate', trail.difficulty === 'moderate');
+	dialogDifficulty.classList.toggle('hard', trail.difficulty === 'hard');
 	dialogDistance.textContent = formatDistance(trail.length);
 	dialogElevation.textContent = trail.elevation ? `${Math.round(trail.elevation).toLocaleString()} ft` : '—';
 	dialogNote.textContent = trail.note ? `Note: ${trail.note}` : '';
