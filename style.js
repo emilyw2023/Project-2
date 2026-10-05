@@ -48,12 +48,11 @@ function formatDistance(value) {
 	return `${Number.isInteger(distance) ? distance : distance.toFixed(1).replace(/\.0$/, '')} ${suffix}`;
 }
 
-function renderTrail(trail, index) {
+function renderTrail(trail) {
 	const favorite = savedFavorites.has(trail.key);
-	const imageStyle = `art-${(index % 6) + 1}`;
 	const elevation = trail.elevation ? `${Math.round(trail.elevation).toLocaleString()} ft` : '—';
 	return `<article class="trail-card">
-		<div class="card-art ${imageStyle}" aria-hidden="true">
+		<div class="card-art" aria-hidden="true">
 			<span class="art-sun"></span>
 			<span class="difficulty-pill ${trail.difficulty}">${escapeHTML(trail.difficulty)}</span>
 			<span class="art-label">FIND YOUR OWN PACE</span>
