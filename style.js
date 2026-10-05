@@ -99,7 +99,7 @@ function showTrailDetails(key) {
 
 	dialogTitle.textContent = trail.name;
 	dialogLocation.textContent = trail.location;
-	dialogDifficulty.textContent = `${trail.difficulty} difficulty`;
+	dialogDifficulty.textContent = trail.difficulty;
 	dialogDifficulty.classList.toggle('easy', trail.difficulty === 'easy');
 	dialogDifficulty.classList.toggle('moderate', trail.difficulty === 'moderate');
 	dialogDifficulty.classList.toggle('hard', trail.difficulty === 'hard');
