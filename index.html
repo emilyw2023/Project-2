@@ -10,6 +10,7 @@
     <script src="style.js" defer></script>
 </head>
 <body>
+    <!-- Site navigation -->
     <header class="site-header">
         <nav class="header-nav" aria-label="Main navigation">
             <a href="#explore">Trails</a>
@@ -18,16 +19,15 @@
     </header>
 
     <main id="top">
+        <!-- Intro heading and link to the trail list -->
         <section class="hero" aria-labelledby="hero-title">
             <div class="hero-content">
                 <h1 id="hero-title">Find your next hike.</h1>
                 <a class="hero-button" href="#explore">Browse trails <span aria-hidden="true">↓</span></a>
             </div>
-            <div class="hero-art" aria-hidden="true">
-                <div class="sun"></div><div class="mountain mountain-back"></div><div class="mountain mountain-mid"></div><div class="mountain mountain-front"></div>
-            </div>
         </section>
 
+        <!-- Trail filters and results -->
         <section class="explore-section" id="explore" aria-labelledby="explore-title">
             <div class="section-heading">
                 <h2 id="explore-title">Explore trails</h2>
@@ -38,7 +38,7 @@
                     <span class="search-icon" aria-hidden="true">⌕</span>
                     <span class="visually-hidden">Search trails or locations</span>
                     <input id="search-input" type="search" placeholder="Search trails or places..." autocomplete="off">
-                    <kbd>/</kbd>
+                    <span class="search-hint">Search</span>
                 </label>
                 <label class="filter-control">
                     <span class="visually-hidden">Filter by difficulty</span>
@@ -62,6 +62,7 @@
                         <option value="easiest">Lowest elevation</option>
                     </select>
                 </label>
+                <!-- Show only trails that have been favorited -->
                 <button class="favorites-toggle" id="favorites-toggle" type="button" aria-pressed="false"><span aria-hidden="true">♡</span> Favorites</button>
             </div>
 
@@ -76,8 +77,28 @@
             <p class="load-error" id="load-error" hidden>We couldn't load the trail list. Please check that Data.json is beside this page and try again.</p>
         </section>
 
+        <!-- Trail details popup; closed by its button, Escape, or clicking outside -->
+        <dialog class="trail-dialog" id="trailpopup" aria-labelledby="dialog-title">
+            <button class="dialog-close" id="dialog-close" type="button" aria-label="Close trail details">×</button>
+            <div class="card-art dialog-art" aria-hidden="true">
+                <span class="art-sun"></span>
+                <span class="art-label">TRAIL DETAILS</span>
+            </div>
+            <div class="dialog-content">
+                <p class="dialog-difficulty" id="dialog-difficulty"></p>
+                <h2 id="dialog-title"></h2>
+                <p class="dialog-location" id="dialog-location"></p>
+                <div class="dialog-stats">
+                    <div><span>Distance</span><strong id="dialog-distance"></strong></div>
+                    <div><span>Elevation gain</span><strong id="dialog-elevation"></strong></div>
+                </div>
+                <a class="dialog-trail-link" id="dialog-trail-link" href="https://maps.app.goo.gl/qjJv7FxFwPEpMXGv9" target="_blank" rel="noopener noreferrer" hidden>Open in Google Maps ↗</a>
+                <p class="dialog-note" id="dialog-note" hidden></p>
+            </div>
+        </dialog>
     </main>
 
+    <!-- Page footer -->
     <footer class="site-footer"><a href="#top">Back to top ↑</a></footer>
 </body>
 </html>

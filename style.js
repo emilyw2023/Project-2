@@ -1,3 +1,4 @@
+// Find the page elements used by the trail list.
 const grid = document.querySelector('#trail-grid');
 const resultsCount = document.querySelector('#results-count');
 const emptyState = document.querySelector('#empty-state');
@@ -7,11 +8,23 @@ const difficultyFilter = document.querySelector('#difficulty-filter');
 const locationFilter = document.querySelector('#location-filter');
 const sortSelect = document.querySelector('#sort-select');
 const favoritesToggle = document.querySelector('#favorites-toggle');
+const trailDialog = document.querySelector('#trailpopup');
+const dialogClose = document.querySelector('#dialog-close');
+const dialogTitle = document.querySelector('#dialog-title');
+const dialogLocation = document.querySelector('#dialog-location');
+const dialogDifficulty = document.querySelector('#dialog-difficulty');
+const dialogDistance = document.querySelector('#dialog-distance');
+const dialogElevation = document.querySelector('#dialog-elevation');
+const dialogNote = document.querySelector('#dialog-note');
+const dialogTrailLink = document.querySelector('#dialog-trail-link');
 
 let trails = [];
+// Saved trail keys power the heart buttons and favorites-only filter.
 let savedFavorites = new Set();
 let showFavoritesOnly = false;
+const preferredRegionOrder = ['GA', 'MT', 'WY', 'WA'];
 
+// Clean and format values from the trail data.
 const escapeHTML = (value) => String(value).replace(/[&<>"']/g, (character) => ({
 	'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
 })[character]);
@@ -41,6 +54,14 @@ function locationRegion(location) {
 	return parts.at(-1) || location;
 }
 
+function compareRegions(first, second) {
+	const firstOrder = preferredRegionOrder.indexOf(first);
+	const secondOrder = preferredRegionOrder.indexOf(second);
+	if (firstOrder < 0) return secondOrder < 0 ? first.localeCompare(second) : 1;
+	if (secondOrder < 0) return -1;
+	return firstOrder - secondOrder;
+}
+
 function formatDistance(value) {
 	const raw = clean(value);
 	const distance = numberFrom(raw);
@@ -48,10 +69,16 @@ function formatDistance(value) {
 	return `${Number.isInteger(distance) ? distance : distance.toFixed(1).replace(/\.0$/, '')} ${suffix}`;
 }
 
+// Build the HTML for one trail card.
 function renderTrail(trail) {
+	// Show a filled heart when this trail is saved.
 	const favorite = savedFavorites.has(trail.key);
-	const elevation = trail.elevation ? `${Math.round(trail.elevation).toLocaleString()} ft` : '—';
-	return `<article class="trail-card">
+	const details = [
+		[formatDistance(trail.length), 'DISTANCE'],
+		[trail.elevation ? `${Math.round(trail.elevation).toLocaleString()} ft` : '—', 'ELEVATION GAIN']
+	].map(([value, label]) => `<div class="trail-stat"><strong>${escapeHTML(value)}</strong><span>${label}</span></div>`).join('');
+	const note = trail.note ? `<p class="trail-note">✦ &nbsp;${escapeHTML(trail.note)}</p>` : '';
+	return `<article class="trail-card" data-trail-key="${escapeHTML(trail.key)}" tabindex="0" aria-haspopup="dialog" aria-label="View details for ${escapeHTML(trail.name)}">
 		<div class="card-art" aria-hidden="true">
 			<span class="art-sun"></span>
 			<span class="difficulty-pill ${trail.difficulty}">${escapeHTML(trail.difficulty)}</span>
@@ -61,15 +88,29 @@ function renderTrail(trail) {
 		<div class="card-body">
 			<p class="card-location">⌖ &nbsp;${escapeHTML(trail.location)}</p>
 			<h3 class="card-title" title="${escapeHTML(trail.name)}">${escapeHTML(trail.name)}</h3>
-			<div class="trail-stats">
-				<div class="trail-stat"><strong>${escapeHTML(formatDistance(trail.length))}</strong><span>DISTANCE</span></div>
-				<div class="trail-stat"><strong>${escapeHTML(elevation)}</strong><span>ELEVATION GAIN</span></div>
-			</div>
-			${trail.note ? `<p class="trail-note">✦ &nbsp;${escapeHTML(trail.note)}</p>` : ''}
+			<div class="trail-stats">${details}</div>
+			${note}
 		</div>
 	</article>`;
 }
 
+// Fill in and open the details popup for a trail.
+function showTrailDetails(key) {
+	const trail = trails.find((item) => item.key === key);
+	if (!trail) return;
+
+	dialogTitle.textContent = trail.name;
+	dialogLocation.textContent = trail.location;
+	dialogDifficulty.textContent = `${trail.difficulty} difficulty`;
+	dialogDistance.textContent = formatDistance(trail.length);
+	dialogElevation.textContent = trail.elevation ? `${Math.round(trail.elevation).toLocaleString()} ft` : '—';
+	dialogNote.textContent = trail.note ? `Note: ${trail.note}` : '';
+	dialogNote.hidden = !trail.note;
+	dialogTrailLink.hidden = trail.name.toLowerCase().replace(/[^a-z]/g, '') !== 'ravencliffalls';
+	trailDialog.showModal();
+}
+
+// Apply the selected filters and show matching trails.
 function renderTrails() {
 	const query = searchInput.value.trim().toLowerCase();
 	const difficulty = difficultyFilter.value;
@@ -82,15 +123,22 @@ function renderTrails() {
 			&& (!showFavoritesOnly || savedFavorites.has(trail.key));
 	});
 
-	if (sortSelect.value === 'shortest') filtered.sort((a, b) => a.lengthValue - b.lengthValue);
-	if (sortSelect.value === 'longest') filtered.sort((a, b) => b.lengthValue - a.lengthValue);
-	if (sortSelect.value === 'easiest') filtered.sort((a, b) => a.elevation - b.elevation);
+	if (sortSelect.value === 'recommended') {
+		filtered.sort((a, b) => compareRegions(locationRegion(a.location), locationRegion(b.location)));
+	} else if (sortSelect.value === 'shortest') {
+		filtered.sort((a, b) => a.lengthValue - b.lengthValue);
+	} else if (sortSelect.value === 'longest') {
+		filtered.sort((a, b) => b.lengthValue - a.lengthValue);
+	} else if (sortSelect.value === 'easiest') {
+		filtered.sort((a, b) => a.elevation - b.elevation);
+	}
 
 	grid.innerHTML = filtered.map(renderTrail).join('');
 	resultsCount.textContent = `${filtered.length} ${filtered.length === 1 ? 'trail' : 'trails'} to explore`;
 	emptyState.hidden = filtered.length > 0;
 }
 
+// Save favorite trails in this browser.
 function saveFavorites() {
 	try {
 		localStorage.setItem('trailhead-favorites', JSON.stringify([...savedFavorites]));
@@ -99,6 +147,7 @@ function saveFavorites() {
 	}
 }
 
+// Load trail data and add its locations to the filter menu.
 async function loadTrails() {
 	try {
 		const response = await fetch('./Data.json');
@@ -120,6 +169,7 @@ async function loadTrails() {
 			return trail;
 		}).filter((trail) => trail.name);
 
+		// Restore saved favorites, or use the defaults from the data file.
 		let storedFavorites;
 		try {
 			storedFavorites = localStorage.getItem('trailhead-favorites');
@@ -138,7 +188,7 @@ async function loadTrails() {
 			}));
 		}
 
-		const regions = [...new Set(trails.map((trail) => locationRegion(trail.location)))].sort();
+		const regions = [...new Set(trails.map((trail) => locationRegion(trail.location)))].sort(compareRegions);
 		locationFilter.insertAdjacentHTML('beforeend', regions.map((region) => `<option value="${escapeHTML(region)}">${escapeHTML(region)}</option>`).join(''));
 		renderTrails();
 	} catch (error) {
@@ -148,11 +198,13 @@ async function loadTrails() {
 	}
 }
 
+// Update the trail list when a filter changes.
 searchInput.addEventListener('input', renderTrails);
 difficultyFilter.addEventListener('change', renderTrails);
 locationFilter.addEventListener('change', renderTrails);
 sortSelect.addEventListener('change', renderTrails);
 
+// Turn favorites-only filtering on or off.
 favoritesToggle.addEventListener('click', () => {
 	showFavoritesOnly = !showFavoritesOnly;
 	favoritesToggle.setAttribute('aria-pressed', String(showFavoritesOnly));
@@ -160,16 +212,36 @@ favoritesToggle.addEventListener('click', () => {
 	renderTrails();
 });
 
+// Open trail details, or save/remove a favorite when its heart is clicked.
 grid.addEventListener('click', (event) => {
 	const button = event.target.closest('[data-favorite]');
-	if (!button) return;
-	const key = button.dataset.favorite;
-	if (savedFavorites.has(key)) savedFavorites.delete(key);
-	else savedFavorites.add(key);
-	saveFavorites();
-	renderTrails();
+	if (button) {
+		const key = button.dataset.favorite;
+		if (savedFavorites.has(key)) savedFavorites.delete(key);
+		else savedFavorites.add(key);
+		saveFavorites();
+		renderTrails();
+		return;
+	}
+
+	const card = event.target.closest('[data-trail-key]');
+	if (card) showTrailDetails(card.dataset.trailKey);
 });
 
+// Support opening cards with Enter or Space.
+grid.addEventListener('keydown', (event) => {
+	const card = event.target.closest('[data-trail-key]');
+	if (!card || event.target !== card || !['Enter', ' '].includes(event.key)) return;
+	event.preventDefault();
+	showTrailDetails(card.dataset.trailKey);
+});
+
+dialogClose.addEventListener('click', () => trailDialog.close());
+trailDialog.addEventListener('click', (event) => {
+	if (event.target === trailDialog) trailDialog.close();
+});
+
+// Reset search, filters, and favorites view.
 document.querySelector('#clear-filters').addEventListener('click', () => {
 	searchInput.value = '';
 	difficultyFilter.value = 'all';
@@ -181,6 +253,7 @@ document.querySelector('#clear-filters').addEventListener('click', () => {
 	renderTrails();
 });
 
+// Press / to jump directly to the search box.
 document.addEventListener('keydown', (event) => {
 	if (event.key === '/' && !['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
 		event.preventDefault();
@@ -188,4 +261,5 @@ document.addEventListener('keydown', (event) => {
 	}
 });
 
+// Start the page by loading the trail data.
 loadTrails();
