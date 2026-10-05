@@ -28,7 +28,7 @@ button, select { cursor: pointer; }
 .site-footer > a:last-child:hover { color: var(--forest); }
 
 /* Intro heading and button */
-.hero { padding: 120px 6% 140px; background: var(--paper); }
+.hero { display: flex; min-height: 72vh; align-items: center; padding: 60px 6%; background: var(--paper); }
 .hero-content { width: min(620px, 100%); }
 .hero h1 { margin: 0 0 22px; color: var(--ink); font-size: clamp(40px, 5vw, 60px); font-weight: 650; letter-spacing: -1.5px; line-height: 1.1; }
 .hero-button { display: inline-flex; align-items: center; gap: 16px; padding: 12px 16px; color: #fff; background: var(--forest); border-radius: 5px; font-size: 14px; font-weight: 600; transition: background .2s; }
@@ -36,7 +36,7 @@ button, select { cursor: pointer; }
 .hero-button span { font-size: 16px; }
 
 /* Trail filters and results */
-.explore-section { max-width: 1320px; margin: 0 auto; padding: 56px 6% 72px; }
+.explore-section { max-width: 1320px; margin: 0 auto; padding: 40px 6% 72px; }
 .section-heading { display: flex; align-items: flex-end; margin-bottom: 24px; }
 .section-heading h2 { margin: 0; font-size: clamp(28px, 3vw, 36px); font-weight: 650; line-height: 1.2; letter-spacing: -1px; }
 .toolbar { display: flex; align-items: center; gap: 10px; padding: 0; border: 0; background: transparent; }
@@ -163,10 +163,10 @@ button, select { cursor: pointer; }
 /* Phone layout */
 @media (max-width: 720px) {
 	.site-header { height: 68px; }
-	.hero { padding-top: 88px; padding-bottom: 96px; }
+	.hero { min-height: 60vh; padding: 40px 5%; }
 	.hero-content { width: 100%; }
 	.hero h1 { font-size: clamp(44px, 11vw, 66px); }
-	.explore-section { padding-top: 62px; padding-bottom: 65px; }
+	.explore-section { padding-top: 38px; padding-bottom: 65px; }
 	.section-heading { align-items: flex-start; flex-direction: column; gap: 13px; }
 	.trail-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 	.card-body { padding: 12px; }
