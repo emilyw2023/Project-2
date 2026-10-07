@@ -54,10 +54,6 @@ button, select { cursor: pointer; }
 .location-control { flex-basis: 150px; }
 .sort-control { flex-basis: 155px; }
 
-/* Favorites-only filter button */
-.favorites-toggle { height: 46px; padding: 0 14px; white-space: nowrap; color: #4d5a51; background: var(--paper); border: 1px solid var(--line); border-radius: 5px; font-size: 14px; font-weight: 600; transition: all .18s; }
-.favorites-toggle span { margin-right: 4px; font-size: 16px; vertical-align: -1px; }
-.favorites-toggle:hover, .favorites-toggle[aria-pressed="true"] { color: #fff; background: var(--forest); border-color: var(--forest); }
 .results-meta { display: flex; align-items: center; gap: 13px; margin: 26px 1px 15px; }
 .results-meta p { margin: 0; color: #57635a; font-size: 14px; font-weight: 600; }
 .results-rule { height: 1px; flex: 1; background: var(--line); }
@@ -68,6 +64,27 @@ button, select { cursor: pointer; }
 .trail-card { min-width: 0; position: relative; overflow: hidden; background: #f2f6f1; border: 1px solid #dce7dd; border-radius: 8px; cursor: pointer; transition: border-color .2s, box-shadow .2s; }
 .trail-card:hover { border-color: #c5d2c7; box-shadow: 0 5px 18px #26392b12; }
 .trail-card:focus-visible { outline: 3px solid #97a978; outline-offset: 3px; }
+.favorite-button {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	z-index: 2;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 34px;
+	height: 34px;
+	border: 1px solid rgba(38, 53, 44, 0.1);
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.88);
+	color: #324338;
+	font-size: 20px;
+	line-height: 1;
+	box-shadow: 0 4px 10px rgba(20, 39, 30, 0.08);
+	transition: transform .2s ease, background .2s ease, color .2s ease;
+}
+.favorite-button:hover { transform: scale(1.05); background: #fff; }
+.favorite-button.is-favorite { color: #c55050; }
 .card-art { height: 116px; position: relative; overflow: hidden; background: #416c50; }
 .difficulty-pill { position: absolute; top: 12px; left: 12px; z-index: 1; padding: 6px 9px; color: #425643; background: #fff; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: capitalize; }
 .difficulty-pill.easy { color: #246b3b; }
@@ -77,13 +94,6 @@ button, select { cursor: pointer; }
 .dialog-difficulty.easy { color: #246b3b; }
 .dialog-difficulty.moderate { color: #805900; }
 
-
-
-/* Heart button on trail card */
-
-.favorite-button { position: absolute; top: 10px; right: 10px; z-index: 1; width: 34px; height: 34px; display: grid; place-items: center; color: #314b3c; background: #fff; border: 1px solid var(--line); border-radius: 50%; font-size: 18px; transition: color .18s; }
-.favorite-button:hover { color: #c65d48; }
-.favorite-button.is-favorite { color: #c65d48; }
 
 
 .card-body { padding: 16px; background: #f2f6f1; }
@@ -158,7 +168,6 @@ button, select { cursor: pointer; }
 	.toolbar { flex-wrap: wrap; }
 	.search-box { flex-basis: 100%; }
 	.filter-control, .location-control, .sort-control { flex: 1 1 130px; }
-	.favorites-toggle { flex: 0 0 auto; }
 }
 /* Phone layout */
 @media (max-width: 720px) {
@@ -178,7 +187,6 @@ button, select { cursor: pointer; }
 	.hero, .explore-section { padding-left: 20px; padding-right: 20px; }
 	.toolbar { gap: 8px; }
 	.filter-control, .location-control, .sort-control { flex-basis: calc(50% - 5px); }
-	.favorites-toggle { flex: 1 1 calc(50% - 5px); }
 	.trail-grid { grid-template-columns: 1fr; }
 	.card-title { font-size: 16px; }
 	.site-footer { padding-left: 20px; padding-right: 20px; }
